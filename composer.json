@@ -1,0 +1,17 @@
+{
+    "name": "alexanderurakov/math",
+    "autoload": {
+        "psr-4": {
+            "Alexanderurakov\\Math\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "urakovalexander",
+            "email": "urakov.alexander@gmail.com"
+        }
+    ],
+    "require": {
+        "nxp/math-executor": "^2.3"
+    }
+}
