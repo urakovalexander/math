@@ -32,6 +32,12 @@ echo "5. chord (хорд)\n";
 echo "6. newton (Ньютон)\n";
 $method = trim(fgets(STDIN));
 
+$validMethods = ['1', '2', '3', '4', '5', '6'];
+if (!in_array($method, $validMethods)) {
+    echo "Некорректный метод." . PHP_EOL;
+    exit;
+}
+
 switch ($method) {
     case '1':
     case '2':
@@ -49,6 +55,7 @@ switch ($method) {
         echo "Введите количество разбиений n: ";
         $n = (int)trim(fgets(STDIN));
 
+        $solution = null;
         try {
             switch ($method) {
                 case '1':
@@ -61,7 +68,9 @@ switch ($method) {
                     $solution = trapezoid($f, $a, $b, $n);
                     break;
             }
-            echo "Решение: " . $solution . PHP_EOL;
+            if ($solution !== null) {
+                echo "Решение: " . $solution . PHP_EOL;
+            }
         } catch (InvalidArgumentException $e) {
             echo "Ошибка: " . $e->getMessage() . PHP_EOL;
         }
@@ -80,9 +89,12 @@ switch ($method) {
             $matrix[] = $row;
         }
 
+        $solution = null;
         try {
             $solution = gauss($matrix);
-            echo "Решение: " . implode(', ', $solution) . PHP_EOL;
+            if ($solution !== null) {
+                echo "Решение: " . implode(', ', $solution) . PHP_EOL;
+            }
         } catch (InvalidArgumentException $e) {
             echo "Ошибка: " . $e->getMessage() . PHP_EOL;
         }
@@ -99,9 +111,12 @@ switch ($method) {
         echo "Введите правую границу интервала b: ";
         $b = (float)trim(fgets(STDIN));
 
+        $solution = null;
         try {
             $solution = chord($f, $a, $b);
-            echo "Решение: " . $solution . PHP_EOL;
+            if ($solution !== null) {
+                echo "Решение: " . $solution . PHP_EOL;
+            }
         } catch (RuntimeException $e) {
             echo "Ошибка: " . $e->getMessage() . PHP_EOL;
         }
@@ -119,9 +134,12 @@ switch ($method) {
         echo "Введите начальное приближение x0: ";
         $x0 = (float)trim(fgets(STDIN));
 
+        $solution = null;
         try {
             $solution = newton($f, $df, $x0);
-            echo "Решение: " . $solution . PHP_EOL;
+            if ($solution !== null) {
+                echo "Решение: " . $solution . PHP_EOL;
+            }
         } catch (RuntimeException $e) {
             echo "Ошибка: " . $e->getMessage() . PHP_EOL;
         }
